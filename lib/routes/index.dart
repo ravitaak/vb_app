@@ -1,0 +1,17 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:vb_app/language.dart';
+import 'package:vb_app/screens/Auth/index.dart';
+import 'package:vb_app/splash.dart';
+
+import '../guards/index.dart';
+import '../screens/Home/home.dart';
+import '../screens/Offline/index.dart';
+
+@AdaptiveAutoRouter(routes: [
+  CupertinoRoute(page: SplashScreen, path: "/", initial: true),
+  CupertinoRoute(page: SignUpScreen, path: "/Authentication"),
+  CupertinoRoute(page: HomeWrapper, path: "/Home", guards: [AuthGuard]),
+  CupertinoRoute(page: LanguageScreen, path: "/Language"),
+  CupertinoRoute(path: "OfflineHome", page: OfflineHome),
+])
+class $Router {}
