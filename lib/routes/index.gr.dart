@@ -11,46 +11,49 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:flutter/material.dart' as _i7;
-import 'package:vb_app/guards/index.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
+import 'package:vb_app/data/services/models/V3Subscription.dart' as _i10;
+import 'package:vb_app/guards/index.dart' as _i9;
 import 'package:vb_app/language.dart' as _i4;
 import 'package:vb_app/screens/Auth/index.dart' as _i2;
 import 'package:vb_app/screens/Home/home.dart' as _i3;
+import 'package:vb_app/screens/Home/Premium/v4/custom_payment_option.dart'
+    as _i6;
 import 'package:vb_app/screens/Offline/index.dart' as _i5;
 import 'package:vb_app/splash.dart' as _i1;
 
-class Router extends _i6.RootStackRouter {
+class Router extends _i7.RootStackRouter {
   Router({
-    _i7.GlobalKey<_i7.NavigatorState>? navigatorKey,
+    _i8.GlobalKey<_i8.NavigatorState>? navigatorKey,
     required this.authGuard,
   }) : super(navigatorKey);
 
-  final _i8.AuthGuard authGuard;
+  final _i9.AuthGuard authGuard;
 
   @override
-  final Map<String, _i6.PageFactory> pagesMap = {
+  final Map<String, _i7.PageFactory> pagesMap = {
     SplashScreenRoute.name: (routeData) {
-      return _i6.CupertinoPageX<dynamic>(
+      return _i7.CupertinoPageX<dynamic>(
         routeData: routeData,
         child: _i1.SplashScreen(),
       );
     },
     SignUpScreenRoute.name: (routeData) {
-      return _i6.CupertinoPageX<dynamic>(
+      return _i7.CupertinoPageX<dynamic>(
         routeData: routeData,
         child: _i2.SignUpScreen(),
       );
     },
     HomeWrapperRoute.name: (routeData) {
-      return _i6.CupertinoPageX<dynamic>(
+      return _i7.CupertinoPageX<dynamic>(
         routeData: routeData,
         child: _i3.HomeWrapper(),
       );
     },
     LanguageScreenRoute.name: (routeData) {
       final args = routeData.argsAs<LanguageScreenRouteArgs>();
-      return _i6.CupertinoPageX<dynamic>(
+      return _i7.CupertinoPageX<dynamic>(
         routeData: routeData,
         child: _i4.LanguageScreen(
           args.hasUserData,
@@ -59,42 +62,56 @@ class Router extends _i6.RootStackRouter {
       );
     },
     OfflineHomeRoute.name: (routeData) {
-      return _i6.CupertinoPageX<dynamic>(
+      return _i7.CupertinoPageX<dynamic>(
         routeData: routeData,
         child: const _i5.OfflineHome(),
+      );
+    },
+    CustomPaymentScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<CustomPaymentScreenRouteArgs>();
+      return _i7.CupertinoPageX<dynamic>(
+        routeData: routeData,
+        child: _i6.CustomPaymentScreen(
+          key: args.key,
+          subscription: args.subscription,
+        ),
       );
     },
   };
 
   @override
-  List<_i6.RouteConfig> get routes => [
-        _i6.RouteConfig(
+  List<_i7.RouteConfig> get routes => [
+        _i7.RouteConfig(
           SplashScreenRoute.name,
           path: '/',
         ),
-        _i6.RouteConfig(
+        _i7.RouteConfig(
           SignUpScreenRoute.name,
           path: '/Authentication',
         ),
-        _i6.RouteConfig(
+        _i7.RouteConfig(
           HomeWrapperRoute.name,
           path: '/Home',
           guards: [authGuard],
         ),
-        _i6.RouteConfig(
+        _i7.RouteConfig(
           LanguageScreenRoute.name,
           path: '/Language',
         ),
-        _i6.RouteConfig(
+        _i7.RouteConfig(
           OfflineHomeRoute.name,
           path: 'OfflineHome',
+        ),
+        _i7.RouteConfig(
+          CustomPaymentScreenRoute.name,
+          path: 'CustomPaymentScreen',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashScreen]
-class SplashScreenRoute extends _i6.PageRouteInfo<void> {
+class SplashScreenRoute extends _i7.PageRouteInfo<void> {
   const SplashScreenRoute()
       : super(
           SplashScreenRoute.name,
@@ -106,7 +123,7 @@ class SplashScreenRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.SignUpScreen]
-class SignUpScreenRoute extends _i6.PageRouteInfo<void> {
+class SignUpScreenRoute extends _i7.PageRouteInfo<void> {
   const SignUpScreenRoute()
       : super(
           SignUpScreenRoute.name,
@@ -118,7 +135,7 @@ class SignUpScreenRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.HomeWrapper]
-class HomeWrapperRoute extends _i6.PageRouteInfo<void> {
+class HomeWrapperRoute extends _i7.PageRouteInfo<void> {
   const HomeWrapperRoute()
       : super(
           HomeWrapperRoute.name,
@@ -130,7 +147,7 @@ class HomeWrapperRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.LanguageScreen]
-class LanguageScreenRoute extends _i6.PageRouteInfo<LanguageScreenRouteArgs> {
+class LanguageScreenRoute extends _i7.PageRouteInfo<LanguageScreenRouteArgs> {
   LanguageScreenRoute({
     required bool hasUserData,
     required bool hasToken,
@@ -164,7 +181,7 @@ class LanguageScreenRouteArgs {
 
 /// generated route for
 /// [_i5.OfflineHome]
-class OfflineHomeRoute extends _i6.PageRouteInfo<void> {
+class OfflineHomeRoute extends _i7.PageRouteInfo<void> {
   const OfflineHomeRoute()
       : super(
           OfflineHomeRoute.name,
@@ -172,4 +189,39 @@ class OfflineHomeRoute extends _i6.PageRouteInfo<void> {
         );
 
   static const String name = 'OfflineHomeRoute';
+}
+
+/// generated route for
+/// [_i6.CustomPaymentScreen]
+class CustomPaymentScreenRoute
+    extends _i7.PageRouteInfo<CustomPaymentScreenRouteArgs> {
+  CustomPaymentScreenRoute({
+    _i8.Key? key,
+    required _i10.Subscription subscription,
+  }) : super(
+          CustomPaymentScreenRoute.name,
+          path: 'CustomPaymentScreen',
+          args: CustomPaymentScreenRouteArgs(
+            key: key,
+            subscription: subscription,
+          ),
+        );
+
+  static const String name = 'CustomPaymentScreenRoute';
+}
+
+class CustomPaymentScreenRouteArgs {
+  const CustomPaymentScreenRouteArgs({
+    this.key,
+    required this.subscription,
+  });
+
+  final _i8.Key? key;
+
+  final _i10.Subscription subscription;
+
+  @override
+  String toString() {
+    return 'CustomPaymentScreenRouteArgs{key: $key, subscription: $subscription}';
+  }
 }
