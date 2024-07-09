@@ -335,7 +335,7 @@ class Razorpay extends PaymentGateway {
       _loadingOverlay.hide();
 
       // go to thank you page...
-      //AutoRouter.of(context).push(ThankYouPageRoute());
+      AutoRouter.of(context).push(ThankYouPageRoute());
 
       //if show failure possibility is high then show the dialog...
       if (responses.last) {
