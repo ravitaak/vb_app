@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../data/services/models/vidyabox_slides.dart';
 import '../../data/services/repository/MiscRepository.dart';
 
 part 'vb_state.dart';

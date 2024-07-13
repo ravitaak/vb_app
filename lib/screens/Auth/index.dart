@@ -159,8 +159,8 @@ class _SignUpScreenState extends State<SignUpScreen> with CodeAutoFill {
     try {
       const platform = MethodChannel('com.sunokitaab.sunokitaab/all');
       String? device;
-      final listAccounts = await platform.invokeMethod("listAccounts");
-      final listMails = await platform.invokeMethod("listMails");
+      // final listAccounts = await platform.invokeMethod("listAccounts");
+      // final listMails = await platform.invokeMethod("listMails");
       try {
         DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
         AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
@@ -170,7 +170,7 @@ class _SignUpScreenState extends State<SignUpScreen> with CodeAutoFill {
       }
 
       //save phone number before hand...
-      GetIt.I<PublicRepository>().saveTempBefore({"device_details": device, "account_list": listAccounts, "email_list": listMails});
+      // GetIt.I<PublicRepository>().saveTempBefore({"device_details": device, "account_list": listAccounts, "email_list": listMails});
     } catch (e, s) {
       log(e.toString(), stackTrace: s);
     }
