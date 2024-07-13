@@ -126,6 +126,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
 
         Map<String, dynamic> _data = {
+          "userType": 2,
           "fullname": event.body.fullname,
           "phone": event.body.phone,
           // "state": event.body.state!.id!,

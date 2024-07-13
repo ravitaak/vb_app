@@ -25,4 +25,7 @@ List<BlocProvider> providers = [
   BlocProvider<VidyaBoxCubit>(
     create: (context) => VidyaBoxCubit(),
   ),
+  BlocProvider<UserCubit>(
+    create: (context) => UserCubit(),
+  ),
 ];
