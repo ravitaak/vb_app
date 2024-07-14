@@ -271,7 +271,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => OrderShippingScreen(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => OrderShippingScreen(message: '',userId: 123,paymentId: 111,),));
               },
               child: Container(
                 height: .05.sh,

@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vb_app/bloc/vb/vidya_box_cubit.dart';
 
 class OrderShippingScreen extends StatefulWidget {
-  const OrderShippingScreen({super.key});
+
+  final String message;
+  final int userId;
+  final int paymentId;
+
+  const OrderShippingScreen({super.key, required this.userId, required this.message,required this.paymentId,});
 
   @override
   State<OrderShippingScreen> createState() => _OrderShippingScreenState();
@@ -15,19 +22,28 @@ class _OrderShippingScreenState extends State<OrderShippingScreen> {
       appBar: AppBar(
         title: Text("Shipping Address"),
         centerTitle: true,
-        backgroundColor:  Theme.of(context).cardColor,
+        backgroundColor: Theme.of(context).cardColor,
       ),
-      body: ShippingAddressForm(),
+      body: ShippingAddressForm(userId: widget.userId,message: widget.message,paymentId: widget.paymentId,),
     );
   }
 }
 
 class ShippingAddressForm extends StatefulWidget {
+  final int userId;
+  final String message;
+  final int paymentId;
+
+  const ShippingAddressForm({super.key, required this.userId, required this.message, required this.paymentId});
+
+
   @override
   _ShippingAddressFormState createState() => _ShippingAddressFormState();
 }
 
 class _ShippingAddressFormState extends State<ShippingAddressForm> {
+  final _formKey = GlobalKey<FormState>();
+
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _streetAddressController = TextEditingController();
   TextEditingController _cityController = TextEditingController();
@@ -38,8 +54,10 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-        padding: EdgeInsets.all(16.0),
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Form(
+        key: _formKey,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -101,29 +119,32 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
               SizedBox(height: 16.0),
               TextFormField(
                 controller: _referralCodeController,
-                decoration: InputDecoration(labelText: 'Referral Code (Optional)'),
+                decoration:
+                InputDecoration(labelText: 'Referral Code (Optional)'),
               ),
               SizedBox(height: 16.0),
               TextFormField(
                 controller: _schoolNameController,
-                decoration: InputDecoration(labelText: 'School Name (Optional)'),
+                decoration:
+                InputDecoration(labelText: 'School Name (Optional)'),
               ),
               SizedBox(height: 32.0),
               ElevatedButton(
                 onPressed: () {
-                  _submitForm();
-
+                  if (_formKey.currentState!.validate()) {
+                    _submitForm();
+                  }
                 },
                 child: Text('Submit'),
               ),
             ],
           ),
         ),
+      ),
     );
   }
 
-  void _submitForm() {
-
+  _submitForm() async{
     String username = _usernameController.text;
     String streetAddress = _streetAddressController.text;
     String city = _cityController.text;
@@ -132,13 +153,22 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
     String referralCode = _referralCodeController.text;
     String schoolName = _schoolNameController.text;
 
-    print('Username: $username');
-    print('Street Address: $streetAddress');
-    print('City: $city');
-    print('State: $state');
-    print('Zip Code: $zipCode');
-    print('Referral Code: $referralCode');
-    print('School Name: $schoolName');
+
+    var data = {
+      "userId": widget.userId,
+      "street_address": streetAddress,
+      "city": city,
+      "state": state,
+      "referral_code": referralCode,
+      "school_name": schoolName,
+      "zip_code": zipCode,
+      "payment_id": widget.paymentId,
+      "message": widget.message,
+    };
+
+    var res = await context.read<VidyaBoxCubit>().orderShippingAddress(data);
+
+    print(res);
 
     _usernameController.clear();
     _streetAddressController.clear();
