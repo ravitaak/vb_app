@@ -30,4 +30,9 @@ class VidyaBoxCubit extends Cubit<VbState> {
     }
   }
 
+  Future orderShippingAddress(data) async {
+    final resp = await _miscRepository.shippingAddress(data);
+    return resp;
+  }
+
 }

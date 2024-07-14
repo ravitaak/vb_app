@@ -335,7 +335,8 @@ class Razorpay extends PaymentGateway {
       _loadingOverlay.hide();
 
       // go to thank you page...
-      AutoRouter.of(context).push(ThankYouPageRoute());
+      // AutoRouter.of(context).push(ThankYouPageRoute());
+      AutoRouter.of(context).push(OrderShippingScreenRoute(userId: user.id,message: 'Order Placed',paymentId: paymentBody.subscription!.id!));
 
       //if show failure possibility is high then show the dialog...
       if (responses.last) {

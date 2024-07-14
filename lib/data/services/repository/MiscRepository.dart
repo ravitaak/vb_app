@@ -47,6 +47,18 @@ class MiscRepository {
     }
   }
 
+  Future shippingAddress(Map<String, dynamic> body) async {
+    try {
+      Response res = await _dio.post(ApiConstants.version1.shippingAddress, data: body);
+      return res;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 401) {
+        return false;
+      }
+      return true;
+    }
+  }
+
   getPreSignedUrl(String path, String filename) async {
     try {
       Response _response = await _dio.post(ApiConstants.version1.getPreSignedUrl, data: {"path": 'app-data/hiring-assets', "filename": filename});

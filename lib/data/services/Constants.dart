@@ -195,6 +195,10 @@ class Version1 {
   String deleteChatRoom(String roomId) => "${Constants.baseURL}/shared/ai_chat_room/$roomId";
 
   String get saveChatRoomMessage => "${Constants.baseURL}/shared/ai_chat_room.chat";
+
+  // order shipping
+  String get shippingAddress => "${Constants.baseURL}/shared/save_shipping_address";
+
 }
 
 List<ChooseLangModel> languageList = [
