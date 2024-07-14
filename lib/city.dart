@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:vb_app/routes/index.gr.dart';
 
 import 'bloc/user/user_cubit.dart';
 import 'data/database/db.dart';
@@ -21,6 +23,7 @@ class _CityScreenState extends State<CityScreen> {
   String chooseCity = "";
   Database _database = GetIt.I<Database>();
   TbUserData? userData;
+  TextEditingController cityController = TextEditingController();
 
 
   @override
@@ -31,16 +34,19 @@ class _CityScreenState extends State<CityScreen> {
         padding: EdgeInsets.symmetric(horizontal: 24.sp, vertical: 8.sp),
         child: InkWell(
           onTap: () async {
-            userData = await _database.userDao.getUser();
-            var data = {
-              'id': userData!.id,
-              'city': chooseCity
-            };
+            if(chooseButton){
+              userData = await _database.userDao.getUser();
+              var data = {
+                'id': userData!.id,
+                'city': chooseCity
+              };
 
+              log(chooseCity);
 
-
-            var res = await context.read<UserCubit>().updateUser(data);
-            log(res.toString());
+              var res = await context.read<UserCubit>().updateUser(data);
+              log(res.toString());
+              context.router.pushAndPopUntil(HomeWrapperRoute(), predicate: (Route<dynamic> route) => false);
+            }
           },
           child: Container(
             height: 50,
@@ -111,6 +117,8 @@ class _CityScreenState extends State<CityScreen> {
                             actions: [
                               SizedBox(height: 16.sp,),
                               TextFormField(
+
+                                controller: cityController,
                                 decoration: InputDecoration(
 
                                   border: OutlineInputBorder(),
@@ -119,6 +127,7 @@ class _CityScreenState extends State<CityScreen> {
                                   ),
                                   // hintText: "Enter city name "
                                   label: Text("Enter city name")
+
                                 ),
                               ),
 
@@ -126,13 +135,32 @@ class _CityScreenState extends State<CityScreen> {
                               Row(
 
                                 children: [
-                                  Container(padding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(12),
-                                    boxShadow: [
-                                      BoxShadow(color: Colors.grey,offset: Offset(0,0),blurRadius: 2)
-                                    ]
-                                  ),child: Center(child: Text("Save",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),)),
+                                  InkWell(
+                                    onTap: () async{
+                                      setState(() {});
+                                      if(cityController.text.length >2){
+                                        userData = await _database.userDao.getUser();
+                                        var data = {
+                                          'id': userData!.id,
+                                          'city': cityController.text
+                                        };
+                                        log(cityController.text);
+                                        var res = await context.read<UserCubit>().updateUser(data);
+                                        log(res.toString());
+                                        context.router.pushAndPopUntil(HomeWrapperRoute(), predicate: (Route<dynamic> route) => false);
+
+                                      }
+                                      log("tap");
+                                    },
+
+                                    child: Container(padding: EdgeInsets.symmetric(horizontal: 12,vertical: 8),decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12),
+                                      boxShadow: [
+                                        BoxShadow(color: Colors.grey,offset: Offset(0,0),blurRadius: 2)
+                                      ]
+                                    ),child: Center(child: Text("Save",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),)),
+                                    ),
                                   )
                                 ],
                                 mainAxisAlignment: MainAxisAlignment.center,
