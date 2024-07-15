@@ -424,8 +424,8 @@ class MiscRepository {
 
   fetchVidyaBoxSlides() async {
     try {
-      Response _response = await _dio.get(ApiConstants.version1.listShopProducts);
-      return _response.data.map<VidyaBoxSlide>((e) => VidyaBoxSlide.fromJson(e)).toList();
+      Response _response = await _dio.get(ApiConstants.version1.vidyaboxSlides);
+      return _response.data['slides'].map<VidyaBoxSlide>((e) => VidyaBoxSlide.fromJson(e)).toList();
     } on DioException catch (e) {
       log(e.message!, name: "fetchVidyaBoxSlides");
       return -1;

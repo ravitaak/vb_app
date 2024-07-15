@@ -18,18 +18,26 @@ class HomeWrapper extends StatefulWidget {
 }
 
 class _HomeWrapperState extends State<HomeWrapper> {
-  final _pageController = PageController(viewportFraction: 0.877);
+  final _pageControllerL = PageController(viewportFraction: 0.877);
+  final _pageControllerU = PageController(viewportFraction: 0.877);
 
-  double currentPage = 0;
+  double currentPageL = 0;
+  double currentPageU = 0;
 
   @override
   void initState() {
     super.initState();
     context.read<VidyaBoxCubit>().fetchVidyaBoxSlides();
-    _pageController.addListener(() {
+    _pageControllerL.addListener(() {
       setState(() {
-        currentPage = _pageController.page!.toDouble();
-        print(currentPage);
+        currentPageL = _pageControllerL.page!.toDouble();
+        print(currentPageL);
+      });
+    });
+    _pageControllerU.addListener(() {
+      setState(() {
+        currentPageU = _pageControllerU.page!.toDouble();
+        print(currentPageU);
       });
     });
   }
@@ -44,6 +52,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 20.sp,),
               BlocBuilder<VidyaBoxCubit, VbState>(
                 builder: (context, state) {
                   switch (state.slidesLoading) {
@@ -55,17 +64,21 @@ class _HomeWrapperState extends State<HomeWrapper> {
                       );
                     case SlidesLoading.fetched:
                       List<VidyaBoxSlide>? vidyaboxSlides = state.vidyaboxSlides;
+                      List<VidyaBoxSlide> upperSlides = vidyaboxSlides!
+                          .where((slide) => slide.name == 'UPPER')
+                          .toList();
+                      upperSlides.sort((b, a) => a.priority!.compareTo(b.priority!));
                       return Container(
                         height: 200,
                         child: PageView(
                           //boucingscrollphysics() membuat efek mantul saat discroll ke samping
           
                             physics: BouncingScrollPhysics(),
-                            controller: _pageController,
+                            controller: _pageControllerU,
           
                             //make pageview scrollable sideways
                             scrollDirection: Axis.horizontal,
-                            children: vidyaboxSlides!
+                            children: upperSlides!
                                 .map(
                                   (e) => Container(
                                 margin: EdgeInsets.only(right: 15),
@@ -136,17 +149,21 @@ class _HomeWrapperState extends State<HomeWrapper> {
                       );
                     case SlidesLoading.fetched:
                       List<VidyaBoxSlide>? vidyaboxSlides = state.vidyaboxSlides;
+                      List<VidyaBoxSlide> lowerSlides = vidyaboxSlides!
+                          .where((slide) => slide.name == 'LOWER')
+                          .toList();
+                      lowerSlides.sort((b, a) => a.priority!.compareTo(b.priority!));
                       return Container(
                         height: 200,
                         child: PageView(
                           //boucingscrollphysics() membuat efek mantul saat discroll ke samping
           
                             physics: BouncingScrollPhysics(),
-                            controller: _pageController,
+                            controller: _pageControllerL,
           
                             //make pageview scrollable sideways
                             scrollDirection: Axis.horizontal,
-                            children: vidyaboxSlides!
+                            children: lowerSlides!
                                 .map(
                                   (e) => Container(
                                 margin: EdgeInsets.only(right: 15),
@@ -271,7 +288,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => OrderShippingScreen(message: '',userId: 123,paymentId: 111,),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => OrderShippingScreen(message: '',userId: 123,paymentId: '111',),));
               },
               child: Container(
                 height: .05.sh,

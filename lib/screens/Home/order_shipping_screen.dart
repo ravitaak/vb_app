@@ -1,12 +1,15 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vb_app/bloc/vb/vidya_box_cubit.dart';
+
+import '../../routes/index.gr.dart';
 
 class OrderShippingScreen extends StatefulWidget {
 
   final String message;
   final int userId;
-  final int paymentId;
+  final String paymentId;
 
   const OrderShippingScreen({super.key, required this.userId, required this.message,required this.paymentId,});
 
@@ -32,7 +35,7 @@ class _OrderShippingScreenState extends State<OrderShippingScreen> {
 class ShippingAddressForm extends StatefulWidget {
   final int userId;
   final String message;
-  final int paymentId;
+  final String paymentId;
 
   const ShippingAddressForm({super.key, required this.userId, required this.message, required this.paymentId});
 
@@ -133,6 +136,8 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _submitForm();
+                    // go to thank you page...
+                    AutoRouter.of(context).push(ThankYouPageRoute());
                   }
                 },
                 child: Text('Submit'),

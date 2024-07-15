@@ -286,7 +286,7 @@ class OrderShippingScreenRoute
     _i13.Key? key,
     required int userId,
     required String message,
-    required int paymentId,
+    required String paymentId,
   }) : super(
           OrderShippingScreenRoute.name,
           path: 'OrderShippingScreen',
@@ -315,7 +315,7 @@ class OrderShippingScreenRouteArgs {
 
   final String message;
 
-  final int paymentId;
+  final String paymentId;
 
   @override
   String toString() {
