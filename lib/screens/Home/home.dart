@@ -305,8 +305,10 @@ class _HomeWrapperState extends State<HomeWrapper> {
               ),
             ),
             InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CityScreen(),));
+              onTap: () async{
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => CityScreen(),));
+                String url = await context.read<VidyaBoxCubit>().getUrl();
+                launch(url);
               },
               child: Container(
                 height: .05.sh,

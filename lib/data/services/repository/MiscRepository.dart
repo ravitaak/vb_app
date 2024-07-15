@@ -116,6 +116,14 @@ class MiscRepository {
       return <String>[];
     }
   }
+  getFreeDemoUrl() async {
+    try {
+      Response response = await _dio.get(ApiConstants.version1.getSettingValues("REQUEST_DEMO"));
+      return response.data['btnUrl'];
+    } catch (e) {
+      return 'Url not Fectched';
+    }
+  }
 
   postResultsToDB(data) async {
     try {

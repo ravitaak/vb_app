@@ -35,4 +35,9 @@ class VidyaBoxCubit extends Cubit<VbState> {
     return resp;
   }
 
+  getUrl() async{
+    final res = await _miscRepository.getFreeDemoUrl();
+    log(res, name: "URL CHECK");
+    return res;
+  }
 }
