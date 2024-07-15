@@ -198,6 +198,7 @@ class Version1 {
 
   // order shipping
   String get shippingAddress => "${Constants.baseURL}/shared/save_shipping_address";
+  String get vidyaboxSlides => "${Constants.baseURL}/shared/get_vb_slides";
 
 }
 
