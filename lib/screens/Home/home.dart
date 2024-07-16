@@ -4,9 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vb_app/bloc/vb/vidya_box_cubit.dart';
+import 'package:vb_app/screens/Home/Premium/v4/index.dart';
 
+import '../../bloc/subscription/subscription_cubit.dart';
+import '../../data/services/models/user_subscription.dart';
 import '../../data/services/models/vidyabox_slides.dart';
-import 'Premium/v4/index.dart';
 
 class HomeWrapper extends StatefulWidget {
   HomeWrapper();
@@ -229,6 +231,62 @@ class _HomeWrapperState extends State<HomeWrapper> {
                         ),
                       );
                   }
+                },
+              ),
+              Divider(),
+              BlocBuilder<SubscriptionCubit, SubscriptionState>(
+                builder: (context, state) {
+                  int subscriptionDays = 0;
+                  if (state.userSubscription != null) {
+                    UserSubscription userSubscription = state.userSubscription!;
+                    subscriptionDays =
+                        userSubscription.sub!.duration! - (DateTime.now().difference(DateTime.parse(userSubscription.createdAt!)).inDays);
+                  }
+                  return state.userSubscription == null
+                      ? SizedBox()
+                      : Padding(
+                          padding: EdgeInsets.all(12.sp),
+                          child: ListTile(
+                            contentPadding: EdgeInsets.symmetric(vertical: 8.sp, horizontal: 12.sp),
+                            tileColor: subscriptionDays > 0 ? Theme.of(context).primaryColor.withOpacity(0.08) : Colors.red.withOpacity(0.08),
+                            title: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 12.sp),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Subscription Type",
+                                        style: TextStyle(color: Theme.of(context).hintColor),
+                                      ),
+                                      Text(
+                                        state.userSubscription!.sub!.name!,
+                                        style: TextStyle(fontFamily: "Montserrat-ExtraBold", fontSize: 21.sp, color: Theme.of(context).hintColor),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 6.sp),
+                                  margin: EdgeInsets.symmetric(vertical: 8.sp, horizontal: 4.sp),
+                                  child: Text(
+                                    subscriptionDays > 0 ? "Plan Active" : "Plan Expired",
+                                    style: TextStyle(
+                                        color: subscriptionDays > 0 ? Theme.of(context).primaryColor : Colors.red,
+                                        fontFamily: "Montserrat-Bold",
+                                        fontSize: 14.sp),
+                                  ),
+                                  decoration: BoxDecoration(
+                                      color: subscriptionDays > 0 ? Theme.of(context).primaryColor.withOpacity(0.2) : Colors.red.withOpacity(0.2),
+                                      borderRadius: BorderRadius.circular(50)),
+                                )
+                              ],
+                            ),
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(18))),
+                          ),
+                        );
                 },
               ),
               Divider(),

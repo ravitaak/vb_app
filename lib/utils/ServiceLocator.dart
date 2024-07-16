@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:get_it/get_it.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:vb_app/data/database/db.dart';
@@ -56,6 +57,7 @@ Future setupServiceLocator() async {
   GetIt.I.registerSingleton<PublicRepository>(PublicRepository());
   GetIt.I.registerSingleton<AuthRepository>(AuthRepository());
   GetIt.I.registerSingleton<Database>(Database());
+  GetIt.I.registerSingleton<FirebaseAnalytics>(FirebaseAnalytics.instance);
 }
 
 Future unregisterServiceLocator() async {

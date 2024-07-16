@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
         log("User data is null");
       }
       if (userData != null) {
-        context.read<SubscriptionCubit>().setUserData(userData);
+        context.read<UserCubit>().setUserData(userData);
         late List<Future> _futures;
         try {
           _futures = [

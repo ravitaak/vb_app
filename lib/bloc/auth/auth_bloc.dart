@@ -6,6 +6,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:drift/drift.dart' hide JsonKey;
 import 'package:equatable/equatable.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:uuid/uuid.dart';
@@ -36,6 +37,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     });
   }
 
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   AuthRepository _authRepository = GetIt.I<AuthRepository>();
   static const platform = MethodChannel('com.sunokitaab.sunokitaab/all');
 
@@ -110,7 +112,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(Requesting(saving: true));
         String? fcmToken;
         try {
-          // fcmToken = await _firebaseMessaging.getToken();
+          fcmToken = await _firebaseMessaging.getToken();
         } catch (e) {
           fcmToken = "FCM_TOKEN";
         }
@@ -204,14 +206,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         await unregisterServiceLocator();
 
         Database _database = GetIt.I<Database>();
-        String? fcmToken = "";
+        String? fcmToken;
         try {
-          // fcmToken = await _firebaseMessaging.getToken();
+          fcmToken = await _firebaseMessaging.getToken();
         } catch (e) {
           fcmToken = "FCM_TOKEN";
         }
         emit(Requesting(saving: true));
-        dynamic _response = await _authRepository.login(event.phone, fcmToken);
+        dynamic _response = await _authRepository.login(event.phone, fcmToken!);
         if (_response is! int) {
           TbUserCompanion _user = TbUserCompanion.insert(
             id: _response["user"]["id"],
@@ -250,7 +252,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         //get fcm token if possible...
         String? fcmToken;
         try {
-          // fcmToken = await _firebaseMessaging.getToken();
+          fcmToken = await _firebaseMessaging.getToken();
         } catch (e) {
           fcmToken = "FCM_TOKEN";
         }

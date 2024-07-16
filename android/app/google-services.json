@@ -1,0 +1,432 @@
+{
+  "project_info": {
+    "project_number": "351545153957",
+    "firebase_url": "https://sunokitaab-f2916.firebaseio.com",
+    "project_id": "sunokitaab-f2916",
+    "storage_bucket": "sunokitaab-f2916.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:402028db2b4f6b9c76704c",
+        "android_client_info": {
+          "package_name": "com.creativeapps.schoolbusdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:e2d9deca3237a71676704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.creators"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:696f085bc0108c9f76704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.sunokitaab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-5ugouk7uetp52aak2dn9rka7u4ttsk6n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sunokitaab.sunokitaab",
+            "certificate_hash": "2adec405915548e0f2b65dc38f15e8d435d1d4f8"
+          }
+        },
+        {
+          "client_id": "351545153957-b5b7k0905bavgqvohbkr5mo479oc6fs1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sunokitaab.sunokitaab",
+            "certificate_hash": "d0b71a7d81d96c7eda1a74ed4f68c07071b1d642"
+          }
+        },
+        {
+          "client_id": "351545153957-cra45egqh5atpg3ljv5503cqpeqlhfc3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sunokitaab.sunokitaab",
+            "certificate_hash": "0e4db4e1e2c6dfe9895040173a04ac46112303cf"
+          }
+        },
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-2816729475725512~2458216807"
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:78880d0d93aae83976704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.sunokitaab.class10"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:5aa48913bc6fd29b76704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.sunokitaab.class11"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:cb1da1e4d62724ba76704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.sunokitaab.class12"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:5cdaa52eaf35be7f76704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.sunokitaab.class6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:d4000134c0d627de76704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.sunokitaab.class7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:eddd87dd1c290bde76704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.sunokitaab.class8"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:b1223858b1aae2c276704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.sunokitaab.class9"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351545153957:android:bd096f6ca00a9bee76704c",
+        "android_client_info": {
+          "package_name": "com.sunokitaab.vb_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351545153957-jvtqg99qgemo87fukjji968n9fftf656.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFUwT1CVnHfzny9CjZfQzm3d29MeIDHTQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351545153957-8m0r0tjcu7egcsl6hpe4f4a9rbkj7klp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "351545153957-ljm1b0apn2j0fkhib1qt3tk0hkset559.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sunokitaab.sunokitaab"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

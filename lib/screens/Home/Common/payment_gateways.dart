@@ -318,7 +318,8 @@ class Razorpay extends PaymentGateway {
 
   Razorpay({bool upi = false}) {
     _upi = upi;
-    _razorpay.on(RZP.Razorpay.EVENT_PAYMENT_SUCCESS, (RZP.PaymentSuccessResponse data) async {
+    _razorpay.on(RZP.Razorpay.EVENT_PAYMENT_SUCCESS, (data) async {
+      log(data.toString());
       List<dynamic> responses =
           await Future.wait([Future.delayed(const Duration(seconds: 2)), context.read<GlobalCubit>().showFailurePossibilityDialog()]);
       switch (purchaseType) {
@@ -336,7 +337,7 @@ class Razorpay extends PaymentGateway {
 
       // go to thank you page...
       // AutoRouter.of(context).push(ThankYouPageRoute());
-      AutoRouter.of(context).push(OrderShippingScreenRoute(userId: user.id, message: 'Order Placed', paymentId: data.paymentId));
+      AutoRouter.of(context).push(OrderShippingScreenRoute(userId: user.id, message: 'Order Placed', paymentId: data.razorpay_payment_id));
 
       //if show failure possibility is high then show the dialog...
       if (responses.last) {

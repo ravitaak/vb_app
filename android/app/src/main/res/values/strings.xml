@@ -6,5 +6,7 @@
     <string name="flutter_downloader_notification_failed">Download failed</string>
     <string name="flutter_downloader_notification_complete">Download complete</string>
     <string name="flutter_downloader_notification_paused">Download paused</string>
-    <string name="app_name">SunoKitaab</string>
+    <string name="app_name">VidyaBox</string>
+    <string name="facebook_app_id">1061516761949724</string>
+    <string name="facebook_client_token">EAAPFcaGE5hwBOysjaYUUqKPwDgqisAAZA7I9vFofBzUyLJWnkfGlL3AqVrL5ZCBbPnEEFpRqC9IuyLVDDZCyMOWLasobQRlzf4Eu2C2tKQQbNCnQ4CeajqVxUwsEQXZBKXD9WXlI5oW3xVwMsGHjf3jiacqIkStnv0BtlL2EE3iXEZAM5IOojVcMwu5eLrxRKUBEZC3</string>
 </resources>

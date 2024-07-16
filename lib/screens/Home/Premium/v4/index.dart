@@ -451,7 +451,8 @@ class _VidyaBoxPlanCardBuilderState extends State<VidyaBoxPlanCardBuilder> {
                                   top: 4,
                                 ),
                                 child: Text(
-                                  subscription.prefix!,
+                                  // subscription.prefix!,
+                                  "Jai Baba Ki",
                                   style: TextStyle(fontSize: 11.sp),
                                 ),
                               )

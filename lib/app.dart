@@ -2,8 +2,11 @@ import 'dart:core';
 import 'dart:developer';
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:vb_app/bloc/index.dart';
 import 'package:vb_app/guards/index.dart';
 import 'package:vb_app/routes/index.gr.dart' as GeneratedRoutes;
@@ -13,11 +16,10 @@ import 'package:vb_app/utils/ServiceLocator.dart';
 
 import 'bloc/global/global_cubit.dart';
 import 'generated/l10n.dart';
-// import 'package:flutter_uxcam/flutter_uxcam.dart';
 
 initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   await setupServiceLocator();
 
@@ -94,9 +96,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                     supportedLocales: AppLocalizations.delegate.supportedLocales,
                     routerDelegate: _appRouter.delegate(
                       navigatorObservers: () => [
-                        // FirebaseAnalyticsObserver(
-                        //   analytics: GetIt.I<FirebaseAnalytics>(),
-                        // ),
+                        FirebaseAnalyticsObserver(
+                          analytics: GetIt.I<FirebaseAnalytics>(),
+                        ),
                         // SentryNavigatorObserver()
                       ],
                     ),
