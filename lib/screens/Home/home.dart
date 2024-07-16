@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +25,16 @@ class _HomeWrapperState extends State<HomeWrapper> {
 
   double currentPageL = 0;
   double currentPageU = 0;
+
+  final ScrollController _scrollController = ScrollController();
+
+  void _scrollToEnd() {
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
 
   @override
   void initState() {
@@ -50,6 +62,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
       // ),
       body: SafeArea(
         child: SingleChildScrollView(
+          controller: _scrollController,
           child: Column(
             children: [
               SizedBox(height: 20.sp,),
@@ -67,7 +80,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
                       List<VidyaBoxSlide> upperSlides = vidyaboxSlides!
                           .where((slide) => slide.name == 'UPPER')
                           .toList();
-                      upperSlides.sort((b, a) => a.priority!.compareTo(b.priority!));
+                      upperSlides.sort((a, b) => a.priority!.compareTo(b.priority!));
                       return Container(
                         height: 200,
                         child: PageView(
@@ -152,7 +165,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
                       List<VidyaBoxSlide> lowerSlides = vidyaboxSlides!
                           .where((slide) => slide.name == 'LOWER')
                           .toList();
-                      lowerSlides.sort((b, a) => a.priority!.compareTo(b.priority!));
+                      lowerSlides.sort((a, b) => a.priority!.compareTo(b.priority!));
                       return Container(
                         height: 200,
                         child: PageView(
@@ -287,9 +300,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             InkWell(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => OrderShippingScreen(message: '',userId: 123,paymentId: '111',),));
-              },
+              onTap: _scrollToEnd,
               child: Container(
                 height: .05.sh,
                 width: .35.sw,
@@ -308,6 +319,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
               onTap: () async{
                 // Navigator.push(context, MaterialPageRoute(builder: (context) => CityScreen(),));
                 String url = await context.read<VidyaBoxCubit>().getUrl();
+                log(url);
                 launch(url);
               },
               child: Container(
