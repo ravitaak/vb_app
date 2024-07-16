@@ -2,6 +2,7 @@ import 'dart:core';
 import 'dart:developer';
 
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
+import 'package:facebook_app_events/facebook_app_events.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,8 @@ import 'generated/l10n.dart';
 initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  final facebookAppEvents = FacebookAppEvents();
+  facebookAppEvents.setAutoLogAppEventsEnabled(true);
 
   await setupServiceLocator();
 
