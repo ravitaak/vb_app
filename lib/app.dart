@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:vb_app/bloc/index.dart';
 import 'package:vb_app/guards/index.dart';
 import 'package:vb_app/routes/index.gr.dart' as GeneratedRoutes;
@@ -94,9 +93,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                     locale: _locale ?? Locale("en"),
                     localizationsDelegates: const [
                       AppLocalizations.delegate,
-                      GlobalCupertinoLocalizations.delegate,
-                      GlobalMaterialLocalizations.delegate,
-                      GlobalWidgetsLocalizations.delegate,
                     ],
                     supportedLocales: AppLocalizations.delegate.supportedLocales,
                     routerDelegate: _appRouter.delegate(

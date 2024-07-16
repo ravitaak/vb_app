@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -157,18 +156,6 @@ class _SignUpScreenState extends State<SignUpScreen> with CodeAutoFill {
 
   void saveDataBeforeHand() async {
     try {
-      const platform = MethodChannel('com.sunokitaab.sunokitaab/all');
-      String? device;
-      // final listAccounts = await platform.invokeMethod("listAccounts");
-      // final listMails = await platform.invokeMethod("listMails");
-      try {
-        DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-        AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-        device = "${androidInfo.brand}, ${androidInfo.model}, ${androidInfo.product}, ${androidInfo.device}, ${androidInfo.version.sdkInt}";
-      } catch (e) {
-        device = "N/A";
-      }
-
       //save phone number before hand...
       // GetIt.I<PublicRepository>().saveTempBefore({"device_details": device, "account_list": listAccounts, "email_list": listMails});
     } catch (e, s) {

@@ -11,17 +11,15 @@ import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/src/provider.dart';
 import 'package:razorpay_flutter_customui/razorpay_flutter_customui.dart';
-import 'package:vb_app/screens/Home/Premium/v4/card_info_model.dart';
 import 'package:vb_app/screens/Home/Common/payment_gateways.dart' as PG;
+import 'package:vb_app/screens/Home/Premium/v4/card_info_model.dart';
 
 import '../../../../bloc/private/private_cubit.dart';
 import '../../../../bloc/user/user_cubit.dart';
 import '../../../../data/services/models/Coupon.dart';
 import '../../../../data/services/models/V3Subscription.dart';
 import '../v2/bottom_sheet_pages.dart';
-
 
 class CustomPaymentScreen extends StatefulWidget {
   const CustomPaymentScreen({Key? key, required this.subscription});
@@ -573,6 +571,7 @@ class _CustomPaymentScreenState extends State<CustomPaymentScreen> {
                                 if (p0!.length == 5) {
                                   cvvFocusNode.requestFocus();
                                 }
+                                return null;
                               },
                             ),
                           ),
@@ -870,7 +869,7 @@ class _CustomPaymentScreenState extends State<CustomPaymentScreen> {
                       const SizedBox(width: 15),
                       CircleAvatar(
                         radius: 22,
-                        backgroundImage: snapshot.data as ImageProvider? ?? AssetImage("assets/logo/bhim.jpg"),
+                        backgroundImage: snapshot.data ?? AssetImage("assets/logo/bhim.jpg"),
                       ),
                       const SizedBox(width: 10),
                       Text(element.value.toString(), style: textTheme(14, weight: FontWeight.bold)),

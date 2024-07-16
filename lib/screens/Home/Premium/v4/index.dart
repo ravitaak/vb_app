@@ -2,9 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -395,14 +393,11 @@ class VidyaBoxPlanCardBuilder extends StatefulWidget {
 
 class _VidyaBoxPlanCardBuilderState extends State<VidyaBoxPlanCardBuilder> {
   Widget _subscriptionCard(Subscription subscription, {MainAxisSize mainAxisSize = MainAxisSize.max}) {
-    int? trailAmount;
     if (subscription.recurring ?? false) {
       String? addonString = subscription.addons;
       if (addonString != null && addonString.isNotEmpty) {
         var addons = jsonDecode(addonString);
-        if (addons[0]["item"]["amount"] != null) {
-          trailAmount = int.tryParse(addons[0]["item"]["amount"])! ~/ 100;
-        }
+        if (addons[0]["item"]["amount"] != null) {}
       }
     }
     return Container(

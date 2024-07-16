@@ -6,9 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vb_app/bloc/vb/vidya_box_cubit.dart';
-import 'package:vb_app/city.dart';
-import 'package:vb_app/language.dart';
-import 'package:vb_app/screens/Home/order_shipping_screen.dart';
 
 import '../../data/services/models/vidyabox_slides.dart';
 import 'Premium/v4/index.dart';
@@ -65,7 +62,9 @@ class _HomeWrapperState extends State<HomeWrapper> {
           controller: _scrollController,
           child: Column(
             children: [
-              SizedBox(height: 20.sp,),
+              SizedBox(
+                height: 20.sp,
+              ),
               BlocBuilder<VidyaBoxCubit, VbState>(
                 builder: (context, state) {
                   switch (state.slidesLoading) {
@@ -77,52 +76,50 @@ class _HomeWrapperState extends State<HomeWrapper> {
                       );
                     case SlidesLoading.fetched:
                       List<VidyaBoxSlide>? vidyaboxSlides = state.vidyaboxSlides;
-                      List<VidyaBoxSlide> upperSlides = vidyaboxSlides!
-                          .where((slide) => slide.name == 'UPPER')
-                          .toList();
+                      List<VidyaBoxSlide> upperSlides = vidyaboxSlides!.where((slide) => slide.name == 'UPPER').toList();
                       upperSlides.sort((a, b) => a.priority!.compareTo(b.priority!));
                       return Container(
                         height: 200,
                         child: PageView(
-                          //boucingscrollphysics() membuat efek mantul saat discroll ke samping
-          
+                            //boucingscrollphysics() membuat efek mantul saat discroll ke samping
+
                             physics: BouncingScrollPhysics(),
                             controller: _pageControllerU,
-          
+
                             //make pageview scrollable sideways
                             scrollDirection: Axis.horizontal,
-                            children: upperSlides!
+                            children: upperSlides
                                 .map(
                                   (e) => Container(
-                                margin: EdgeInsets.only(right: 15),
-                                width: 350,
-                                height: 200,
-                                child: CachedNetworkImage(
-                                  imageUrl: e.thumbnail!,
-                                  imageBuilder: (context, imageProvider) => Container(
-                                    padding: EdgeInsets.all(15),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                                      image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover,
+                                    margin: EdgeInsets.only(right: 15),
+                                    width: 350,
+                                    height: 200,
+                                    child: CachedNetworkImage(
+                                      imageUrl: e.thumbnail!,
+                                      imageBuilder: (context, imageProvider) => Container(
+                                        padding: EdgeInsets.all(15),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
+                                      placeholder: (context, url) => Container(
+                                        child: Center(
+                                          child: CircularProgressIndicator(
+                                            color: Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                      ),
+                                      errorWidget: (context, url, error) => Icon(Icons.error),
                                     ),
                                   ),
-                                  placeholder: (context, url) => Container(
-                                    child: Center(
-                                      child: CircularProgressIndicator(
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                  errorWidget: (context, url, error) => Icon(Icons.error),
-                                ),
-                              ),
-                            )
+                                )
                                 .toList()),
                       );
-          
+
                     case SlidesLoading.initial:
                       return Center(
                         child: CircularProgressIndicator(
@@ -150,7 +147,9 @@ class _HomeWrapperState extends State<HomeWrapper> {
                   }
                 },
               ),
-              SizedBox(height: 8.sp,),
+              SizedBox(
+                height: 8.sp,
+              ),
               BlocBuilder<VidyaBoxCubit, VbState>(
                 builder: (context, state) {
                   switch (state.slidesLoading) {
@@ -162,52 +161,50 @@ class _HomeWrapperState extends State<HomeWrapper> {
                       );
                     case SlidesLoading.fetched:
                       List<VidyaBoxSlide>? vidyaboxSlides = state.vidyaboxSlides;
-                      List<VidyaBoxSlide> lowerSlides = vidyaboxSlides!
-                          .where((slide) => slide.name == 'LOWER')
-                          .toList();
+                      List<VidyaBoxSlide> lowerSlides = vidyaboxSlides!.where((slide) => slide.name == 'LOWER').toList();
                       lowerSlides.sort((a, b) => a.priority!.compareTo(b.priority!));
                       return Container(
                         height: 200,
                         child: PageView(
-                          //boucingscrollphysics() membuat efek mantul saat discroll ke samping
-          
+                            //boucingscrollphysics() membuat efek mantul saat discroll ke samping
+
                             physics: BouncingScrollPhysics(),
                             controller: _pageControllerL,
-          
+
                             //make pageview scrollable sideways
                             scrollDirection: Axis.horizontal,
-                            children: lowerSlides!
+                            children: lowerSlides
                                 .map(
                                   (e) => Container(
-                                margin: EdgeInsets.only(right: 15),
-                                width: 350,
-                                height: 200,
-                                child: CachedNetworkImage(
-                                  imageUrl: e.thumbnail!,
-                                  imageBuilder: (context, imageProvider) => Container(
-                                    padding: EdgeInsets.all(15),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                                      image: DecorationImage(
-                                        image: imageProvider,
-                                        fit: BoxFit.cover,
+                                    margin: EdgeInsets.only(right: 15),
+                                    width: 350,
+                                    height: 200,
+                                    child: CachedNetworkImage(
+                                      imageUrl: e.thumbnail!,
+                                      imageBuilder: (context, imageProvider) => Container(
+                                        padding: EdgeInsets.all(15),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
+                                      placeholder: (context, url) => Container(
+                                        child: Center(
+                                          child: CircularProgressIndicator(
+                                            color: Theme.of(context).primaryColor,
+                                          ),
+                                        ),
+                                      ),
+                                      errorWidget: (context, url, error) => Icon(Icons.error),
                                     ),
                                   ),
-                                  placeholder: (context, url) => Container(
-                                    child: Center(
-                                      child: CircularProgressIndicator(
-                                        color: Theme.of(context).primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                  errorWidget: (context, url, error) => Icon(Icons.error),
-                                ),
-                              ),
-                            )
+                                )
                                 .toList()),
                       );
-          
+
                     case SlidesLoading.initial:
                       return Center(
                         child: CircularProgressIndicator(
@@ -235,7 +232,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
                   }
                 },
               ),
-          
+
               // Container(
               //   margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
               //   child: Row(
@@ -292,7 +289,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
           ),
         ),
       ),
-      bottomNavigationBar:Container(
+      bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(horizontal: 30.sp),
         color: Theme.of(context).primaryColor,
         height: .1.sh,
@@ -305,18 +302,21 @@ class _HomeWrapperState extends State<HomeWrapper> {
                 height: .05.sh,
                 width: .35.sw,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(12.sp),
-                  // border: Border.all(color: Colors.grey.shade200),
-                  boxShadow: [
-                    BoxShadow(color: Colors.black54,offset: Offset(0,0),blurRadius: 2),
-                  ]
-                ),
-                child: Center(child: Text("Order Now 🛒",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)),
+                    color: Theme.of(context).cardColor,
+                    borderRadius: BorderRadius.circular(12.sp),
+                    // border: Border.all(color: Colors.grey.shade200),
+                    boxShadow: [
+                      BoxShadow(color: Colors.black54, offset: Offset(0, 0), blurRadius: 2),
+                    ]),
+                child: Center(
+                    child: Text(
+                  "Order Now 🛒",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                )),
               ),
             ),
             InkWell(
-              onTap: () async{
+              onTap: () async {
                 // Navigator.push(context, MaterialPageRoute(builder: (context) => CityScreen(),));
                 String url = await context.read<VidyaBoxCubit>().getUrl();
                 log(url);
@@ -325,14 +325,14 @@ class _HomeWrapperState extends State<HomeWrapper> {
               child: Container(
                 height: .05.sh,
                 width: .35.sw,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(12.sp),
-                    boxShadow: [
-                      BoxShadow(color: Colors.black54,offset: Offset(0,0),blurRadius: 2),
-                    ]
-                ),
-                child: Center(child: Text("Free Demo 🆓",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),)),
+                decoration: BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(12.sp), boxShadow: [
+                  BoxShadow(color: Colors.black54, offset: Offset(0, 0), blurRadius: 2),
+                ]),
+                child: Center(
+                    child: Text(
+                  "Free Demo 🆓",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                )),
               ),
             ),
           ],

@@ -12,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 // import 'package:paytm_allinonesdk/paytm_allinonesdk.dart';
 import 'package:razorpay_flutter_customui/razorpay_flutter_customui.dart' as RZP;
+import 'package:url_launcher/url_launcher.dart';
 import 'package:vb_app/bloc/global/global_cubit.dart';
 import 'package:vb_app/bloc/private/private_cubit.dart';
 import 'package:vb_app/bloc/subscription/subscription_cubit.dart';
@@ -25,7 +26,6 @@ import 'package:vb_app/data/services/models/user_subscription.dart';
 import 'package:vb_app/data/services/repository/PublicRepository.dart';
 import 'package:vb_app/generated/l10n.dart';
 import 'package:vb_app/routes/index.gr.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:vb_app/screens/Home/Common/loading_overlay.dart';
 
 enum PurchaseType { Chapter, Subscription, VidyaBox }
@@ -74,102 +74,102 @@ class PaymentGateway {
       children: gateways
           .map<Widget>(
             (e) => InkWell(
-            onTap: () async {
-              switch (e.name) {
-                case "Paytm":
-                  {
-                    // Paytm _paytmGateway = Paytm();
-                    // _paytmGateway.create(context, purchaseType, paymentBody.copyWithCoupon(coupon: coupon?.id));
+                onTap: () async {
+                  switch (e.name) {
+                    case "Paytm":
+                      {
+                        // Paytm _paytmGateway = Paytm();
+                        // _paytmGateway.create(context, purchaseType, paymentBody.copyWithCoupon(coupon: coupon?.id));
+                      }
+                      break;
+                    case "UPI":
+                      {
+                        // LoadingOverlay _loadingOverlay = LoadingOverlay(context);
+                        // _loadingOverlay.show();
+                        // String _defaultUpiGateway = await context.read<GlobalCubit>().getDefaultUPIGateway();
+                        // _loadingOverlay.hide();
+                        // if(_defaultUpiGateway == "paytm") {
+                        //   Paytm _paytmGateway = Paytm(upi: true);
+                        //   _paytmGateway.create(context, purchaseType, paymentBody.copyWithCoupon(coupon: coupon?.id));
+                        // } else {
+                        //   Razorpay _rzp = Razorpay(upi: true);
+                        //   _rzp.create(context, purchaseType, paymentBody.copyWithCoupon(coupon: coupon?.id));
+                        // }
+                      }
+                      break;
+                    case "Razorpay":
+                      {
+                        Razorpay _rzp = Razorpay();
+                        _rzp.create(context, purchaseType, paymentBody.copyWith(coupon: coupon?.id, payLater: false));
+                      }
+                      break;
+                    case "Study Now, Pay Later":
+                      {
+                        Razorpay _rzp = Razorpay();
+                        _rzp.create(context, purchaseType, paymentBody.copyWith(coupon: coupon?.id, payLater: true));
+                      }
                   }
-                  break;
-                case "UPI":
-                  {
-                    // LoadingOverlay _loadingOverlay = LoadingOverlay(context);
-                    // _loadingOverlay.show();
-                    // String _defaultUpiGateway = await context.read<GlobalCubit>().getDefaultUPIGateway();
-                    // _loadingOverlay.hide();
-                    // if(_defaultUpiGateway == "paytm") {
-                    //   Paytm _paytmGateway = Paytm(upi: true);
-                    //   _paytmGateway.create(context, purchaseType, paymentBody.copyWithCoupon(coupon: coupon?.id));
-                    // } else {
-                    //   Razorpay _rzp = Razorpay(upi: true);
-                    //   _rzp.create(context, purchaseType, paymentBody.copyWithCoupon(coupon: coupon?.id));
-                    // }
-                  }
-                  break;
-                case "Razorpay":
-                  {
-                    Razorpay _rzp = Razorpay();
-                    _rzp.create(context, purchaseType, paymentBody.copyWith(coupon: coupon?.id, payLater: false));
-                  }
-                  break;
-                case "Study Now, Pay Later":
-                  {
-                    Razorpay _rzp = Razorpay();
-                    _rzp.create(context, purchaseType, paymentBody.copyWith(coupon: coupon?.id, payLater: true));
-                  }
-              }
-            },
-            child: Column(
-              children: [
-                Row(
+                },
+                child: Column(
                   children: [
-                    iconBuilder(e.name!),
-                    SizedBox(width: 24),
-                    Column(
+                    Row(
                       children: [
-                        Text(
-                          e.name!,
-                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 14, fontFamily: "Montserrat-Bold"),
+                        iconBuilder(e.name!),
+                        SizedBox(width: 24),
+                        Column(
+                          children: [
+                            Text(
+                              e.name!,
+                              style: Theme.of(context).textTheme.headlineSmall!.copyWith(fontSize: 14, fontFamily: "Montserrat-Bold"),
+                            ),
+                            e.description != null
+                                ? Text(
+                                    e.description!,
+                                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                          fontSize: 12,
+                                        ),
+                                  )
+                                : SizedBox()
+                          ],
                         ),
-                        e.description != null
-                            ? Text(
-                          e.description!,
-                          style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                            fontSize: 12,
-                          ),
-                        )
-                            : SizedBox()
+                        paymentBody.subscription != null
+                            ? paymentBody.subscription!.recommendedGateway != null
+                                ? gateways.firstWhere((element) => element.id == paymentBody.subscription!.recommendedGateway!).id == e.id
+                                    ? Expanded(
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              child: Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.check,
+                                                    color: Theme.of(context).primaryColor,
+                                                    size: 14,
+                                                  ),
+                                                  Text(
+                                                    AppLocalizations.of(context).Recommended,
+                                                    style: TextStyle(
+                                                        fontFamily: "Montserrat-Bold", color: Theme.of(context).primaryColor, fontSize: 10.sp),
+                                                  )
+                                                ],
+                                              ),
+                                              padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context).cardColor.withOpacity(0.4), borderRadius: BorderRadius.circular(50)),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : SizedBox()
+                                : SizedBox()
+                            : SizedBox(),
                       ],
                     ),
-                    paymentBody.subscription != null
-                        ? paymentBody.subscription!.recommendedGateway != null
-                        ? gateways.firstWhere((element) => element.id == paymentBody.subscription!.recommendedGateway!).id == e.id
-                        ? Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Container(
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.check,
-                                  color: Theme.of(context).primaryColor,
-                                  size: 14,
-                                ),
-                                Text(
-                                  AppLocalizations.of(context).Recommended,
-                                  style: TextStyle(
-                                      fontFamily: "Montserrat-Bold", color: Theme.of(context).primaryColor, fontSize: 10.sp),
-                                )
-                              ],
-                            ),
-                            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
-                            decoration: BoxDecoration(
-                                color: Theme.of(context).cardColor.withOpacity(0.4), borderRadius: BorderRadius.circular(50)),
-                          ),
-                        ],
-                      ),
-                    )
-                        : SizedBox()
-                        : SizedBox()
-                        : SizedBox(),
+                    Divider(),
                   ],
-                ),
-                Divider(),
-              ],
-            )),
-      )
+                )),
+          )
           .toList(),
     );
   }
@@ -192,16 +192,16 @@ class PaymentBody {
 
   PaymentBody(
       {this.amount,
-        this.couponId,
-        this.preferredClass,
-        this.preferredMedium,
-        this.subscription,
-        this.chapterId,
-        this.podcast,
-        this.podcastIndex,
-        this.recurring,
-        this.withOrder,
-        this.payLater = false});
+      this.couponId,
+      this.preferredClass,
+      this.preferredMedium,
+      this.subscription,
+      this.chapterId,
+      this.podcast,
+      this.podcastIndex,
+      this.recurring,
+      this.withOrder,
+      this.payLater = false});
 
   PaymentBody copyWithCoupon({int? coupon}) {
     return PaymentBody(
@@ -320,7 +320,7 @@ class Razorpay extends PaymentGateway {
     _upi = upi;
     _razorpay.on(RZP.Razorpay.EVENT_PAYMENT_SUCCESS, (RZP.PaymentSuccessResponse data) async {
       List<dynamic> responses =
-      await Future.wait([Future.delayed(const Duration(seconds: 2)), context.read<GlobalCubit>().showFailurePossibilityDialog()]);
+          await Future.wait([Future.delayed(const Duration(seconds: 2)), context.read<GlobalCubit>().showFailurePossibilityDialog()]);
       switch (purchaseType) {
         case PurchaseType.Chapter:
           // await context.read<SubscriptionCubit>().getChapter(paymentBody.chapterId!, user.id);
@@ -336,7 +336,7 @@ class Razorpay extends PaymentGateway {
 
       // go to thank you page...
       // AutoRouter.of(context).push(ThankYouPageRoute());
-      AutoRouter.of(context).push(OrderShippingScreenRoute(userId: user.id,message: 'Order Placed',paymentId: data!.paymentId));
+      AutoRouter.of(context).push(OrderShippingScreenRoute(userId: user.id, message: 'Order Placed', paymentId: data.paymentId));
 
       //if show failure possibility is high then show the dialog...
       if (responses.last) {
@@ -402,8 +402,8 @@ class Razorpay extends PaymentGateway {
                         Text(
                           "If you have any kind of doubt or query regarding subscription please let us know!",
                           style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            fontSize: 14.sp,
-                          ),
+                                fontSize: 14.sp,
+                              ),
                         ),
                         SizedBox(
                           height: 12.sp,
@@ -536,12 +536,12 @@ class Razorpay extends PaymentGateway {
               coupon: paymentBody.couponId);
         } else {
           _rzpOrder = await context.read<SubscriptionCubit>().createRazorpayOrder(
-            paymentBody.amount!,
-            user.userData!.id,
-            paymentBody.subscription!.id!,
-            upi: _upi,
-            coupon: context.read<PrivateCubit>().state.currentAppliedCoupon?.id,
-          );
+                paymentBody.amount!,
+                user.userData!.id,
+                paymentBody.subscription!.id!,
+                upi: _upi,
+                coupon: context.read<PrivateCubit>().state.currentAppliedCoupon?.id,
+              );
 
           if (_rzpOrder is String) {
             _loadingOverlay.hide();
@@ -665,12 +665,12 @@ class Razorpay extends PaymentGateway {
               coupon: paymentBody.couponId);
         } else {
           _rzpOrder = await context.read<SubscriptionCubit>().createRazorpayOrder(
-            paymentBody.amount!,
-            user.userData!.id,
-            paymentBody.subscription!.id!,
-            upi: _upi,
-            coupon: context.read<PrivateCubit>().state.currentAppliedCoupon?.id,
-          );
+                paymentBody.amount!,
+                user.userData!.id,
+                paymentBody.subscription!.id!,
+                upi: _upi,
+                coupon: context.read<PrivateCubit>().state.currentAppliedCoupon?.id,
+              );
 
           if (_rzpOrder is String) {
             _loadingOverlay.hide();
