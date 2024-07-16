@@ -11,7 +11,9 @@ class UserCubit extends Cubit<UserState> {
   UserCubit() : super(UserLoading());
   MiscRepository _miscRepository = GetIt.I<MiscRepository>();
 
-  setUserData(TbUserData userData) => emit(UserLoaded(userData: userData));
+  setUserData(TbUserData userData) {
+    emit(UserLoaded(userData: userData));
+  }
 
   Future updateUser(data) async {
     final resp = await _miscRepository.updateUser(data);

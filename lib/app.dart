@@ -73,9 +73,6 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    // FlutterUxcam.optIntoSchematicRecordings();
-    // FlutterUxcam.startWithKey("m06cu4g6jsvihnw");
-
     return MultiBlocProvider(
         providers: [
           ...providers,

@@ -35,8 +35,16 @@ class VidyaBoxCubit extends Cubit<VbState> {
   }
 
   getUrl() async {
-    final res = await _miscRepository.getFreeDemoUrl();
-    log(res, name: "URL CHECK");
-    return res;
+    try {
+      emit(state.copyWith(urlLoading: UrlLoading.loading));
+      final url = await _miscRepository.getFreeDemoUrl();
+      if (url is String) {
+        emit(state.copyWith(urlLoading: UrlLoading.fetched, url: url));
+      } else {
+        emit(state.copyWith(urlLoading: UrlLoading.error));
+      }
+    } catch (e) {
+      emit(state.copyWith(urlLoading: UrlLoading.error));
+    }
   }
 }

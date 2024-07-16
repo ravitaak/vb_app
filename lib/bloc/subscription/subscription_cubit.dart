@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:vb_app/bloc/user/user_cubit.dart';
 import 'package:vb_app/data/services/models/V3Subscription.dart';
@@ -11,6 +12,8 @@ import 'package:vb_app/data/services/models/reference_code.dart';
 import 'package:vb_app/data/services/models/user_subscription.dart';
 import 'package:vb_app/data/services/repository/MiscRepository.dart';
 import 'package:vb_app/utils/SecureStorage.dart';
+
+import '../../data/database/db.dart';
 
 part 'subscription_state.dart';
 
@@ -54,11 +57,14 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
     }
   }
 
+  setUserData(TbUserData userData) {
+    userCubit.setUserData(userData);
+  }
+
   Future getSubscriptionDetails() async {
     try {
       log("getSubscriptionDetails called");
       Stopwatch stopwatch = Stopwatch()..start();
-
       emit(state.copyWith(userSubscriptionStatus: UserSubscriptionStatus.loading));
       UserLoaded _userLoaded = userCubit.state as UserLoaded;
       log("user id ${_userLoaded.userData!.id}");
@@ -75,7 +81,6 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
       }
 
       stopwatch.stop();
-      log('time elapsed ${stopwatch.elapsed}', name: "getSubscriptionDetails");
     } catch (e, s) {
       log("${e.toString()}\n${s.toString()}", name: "getSubscriptionDetails");
     }

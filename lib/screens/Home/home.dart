@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -77,48 +75,51 @@ class _HomeWrapperState extends State<HomeWrapper> {
                     case SlidesLoading.fetched:
                       List<VidyaBoxSlide>? vidyaboxSlides = state.vidyaboxSlides;
                       List<VidyaBoxSlide> upperSlides = vidyaboxSlides!.where((slide) => slide.name == 'UPPER').toList();
-                      upperSlides.sort((a, b) => a.priority!.compareTo(b.priority!));
-                      return Container(
-                        height: 200,
-                        child: PageView(
-                            //boucingscrollphysics() membuat efek mantul saat discroll ke samping
+                      upperSlides.sort((a, b) => b.priority!.compareTo(a.priority!));
 
-                            physics: BouncingScrollPhysics(),
-                            controller: _pageControllerU,
+                      return upperSlides.length > 0
+                          ? Container(
+                              height: 200,
+                              child: PageView(
+                                  //boucingscrollphysics() membuat efek mantul saat discroll ke samping
 
-                            //make pageview scrollable sideways
-                            scrollDirection: Axis.horizontal,
-                            children: upperSlides
-                                .map(
-                                  (e) => Container(
-                                    margin: EdgeInsets.only(right: 15),
-                                    width: 350,
-                                    height: 200,
-                                    child: CachedNetworkImage(
-                                      imageUrl: e.thumbnail!,
-                                      imageBuilder: (context, imageProvider) => Container(
-                                        padding: EdgeInsets.all(15),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                                          image: DecorationImage(
-                                            image: imageProvider,
-                                            fit: BoxFit.cover,
+                                  physics: BouncingScrollPhysics(),
+                                  controller: _pageControllerU,
+
+                                  //make pageview scrollable sideways
+                                  scrollDirection: Axis.horizontal,
+                                  children: upperSlides
+                                      .map(
+                                        (e) => Container(
+                                          margin: EdgeInsets.only(right: 15),
+                                          width: 350,
+                                          height: 200,
+                                          child: CachedNetworkImage(
+                                            imageUrl: e.thumbnail!,
+                                            imageBuilder: (context, imageProvider) => Container(
+                                              padding: EdgeInsets.all(15),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                                                image: DecorationImage(
+                                                  image: imageProvider,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                            placeholder: (context, url) => Container(
+                                              child: Center(
+                                                child: CircularProgressIndicator(
+                                                  color: Theme.of(context).primaryColor,
+                                                ),
+                                              ),
+                                            ),
+                                            errorWidget: (context, url, error) => Icon(Icons.error),
                                           ),
                                         ),
-                                      ),
-                                      placeholder: (context, url) => Container(
-                                        child: Center(
-                                          child: CircularProgressIndicator(
-                                            color: Theme.of(context).primaryColor,
-                                          ),
-                                        ),
-                                      ),
-                                      errorWidget: (context, url, error) => Icon(Icons.error),
-                                    ),
-                                  ),
-                                )
-                                .toList()),
-                      );
+                                      )
+                                      .toList()),
+                            )
+                          : Container();
 
                     case SlidesLoading.initial:
                       return Center(
@@ -162,48 +163,46 @@ class _HomeWrapperState extends State<HomeWrapper> {
                     case SlidesLoading.fetched:
                       List<VidyaBoxSlide>? vidyaboxSlides = state.vidyaboxSlides;
                       List<VidyaBoxSlide> lowerSlides = vidyaboxSlides!.where((slide) => slide.name == 'LOWER').toList();
-                      lowerSlides.sort((a, b) => a.priority!.compareTo(b.priority!));
-                      return Container(
-                        height: 200,
-                        child: PageView(
-                            //boucingscrollphysics() membuat efek mantul saat discroll ke samping
-
-                            physics: BouncingScrollPhysics(),
-                            controller: _pageControllerL,
-
-                            //make pageview scrollable sideways
-                            scrollDirection: Axis.horizontal,
-                            children: lowerSlides
-                                .map(
-                                  (e) => Container(
-                                    margin: EdgeInsets.only(right: 15),
-                                    width: 350,
-                                    height: 200,
-                                    child: CachedNetworkImage(
-                                      imageUrl: e.thumbnail!,
-                                      imageBuilder: (context, imageProvider) => Container(
-                                        padding: EdgeInsets.all(15),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                                          image: DecorationImage(
-                                            image: imageProvider,
-                                            fit: BoxFit.cover,
+                      lowerSlides.sort((a, b) => b.priority!.compareTo(a.priority!));
+                      return lowerSlides.length > 0
+                          ? Container(
+                              height: 200,
+                              child: PageView(
+                                  physics: BouncingScrollPhysics(),
+                                  controller: _pageControllerL,
+                                  scrollDirection: Axis.horizontal,
+                                  children: lowerSlides
+                                      .map(
+                                        (e) => Container(
+                                          margin: EdgeInsets.only(right: 15),
+                                          width: 350,
+                                          height: 200,
+                                          child: CachedNetworkImage(
+                                            imageUrl: e.thumbnail!,
+                                            imageBuilder: (context, imageProvider) => Container(
+                                              padding: EdgeInsets.all(15),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(Radius.circular(15)),
+                                                image: DecorationImage(
+                                                  image: imageProvider,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                            placeholder: (context, url) => Container(
+                                              child: Center(
+                                                child: CircularProgressIndicator(
+                                                  color: Theme.of(context).primaryColor,
+                                                ),
+                                              ),
+                                            ),
+                                            errorWidget: (context, url, error) => Icon(Icons.error),
                                           ),
                                         ),
-                                      ),
-                                      placeholder: (context, url) => Container(
-                                        child: Center(
-                                          child: CircularProgressIndicator(
-                                            color: Theme.of(context).primaryColor,
-                                          ),
-                                        ),
-                                      ),
-                                      errorWidget: (context, url, error) => Icon(Icons.error),
-                                    ),
-                                  ),
-                                )
-                                .toList()),
-                      );
+                                      )
+                                      .toList()),
+                            )
+                          : Container();
 
                     case SlidesLoading.initial:
                       return Center(
@@ -232,57 +231,6 @@ class _HomeWrapperState extends State<HomeWrapper> {
                   }
                 },
               ),
-
-              // Container(
-              //   margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-              //   child: Row(
-              //     children: [
-              //       SizedBox(
-              //         width: .38.sw,
-              //         child: Image.asset('assets/images/Vidyabox.png'),
-              //       ),
-              //       Column(
-              //         crossAxisAlignment: CrossAxisAlignment.start,
-              //         children: [
-              //           Text(
-              //             "Vidyabox: Physical Device",
-              //             style: TextStyle(fontFamily: 'Montserrat-Bold'),
-              //           ),
-              //           Text(
-              //             "#PhoneFreeLearning",
-              //             style: TextStyle(
-              //               fontFamily: 'Montserrat',
-              //               color: Theme.of(context).primaryColor,
-              //             ),
-              //           ),
-              //           SizedBox(
-              //             height: 4,
-              //           ),
-              //           Material(
-              //             color: Theme.of(context).hoverColor,
-              //             borderRadius: BorderRadius.circular(12),
-              //             child: InkWell(
-              //               borderRadius: BorderRadius.circular(12),
-              //               onTap: () {
-              //                 launch("https://vidyabox.in");
-              //               },
-              //               child: Container(
-              //                 padding: EdgeInsets.symmetric(horizontal: 12.sp, vertical: 4.sp),
-              //                 child: Text(
-              //                   "Learn more",
-              //                   style: TextStyle(
-              //                     fontWeight: FontWeight.bold,
-              //                     color: Colors.white,
-              //                   ),
-              //                 ),
-              //               ),
-              //             ),
-              //           ),
-              //         ],
-              //       )
-              //     ],
-              //   ),
-              // ),
               Divider(),
               Padding(padding: EdgeInsets.all(12), child: VidyaBoxContainer()),
             ],
@@ -315,25 +263,48 @@ class _HomeWrapperState extends State<HomeWrapper> {
                 )),
               ),
             ),
-            InkWell(
-              onTap: () async {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => CityScreen(),));
-                String url = await context.read<VidyaBoxCubit>().getUrl();
-                log(url);
-                launch(url);
+            BlocBuilder<VidyaBoxCubit, VbState>(
+              builder: (context, state) {
+                if (state.urlLoading == UrlLoading.fetched) {
+                  return InkWell(
+                    onTap: () async {
+                      print(state.url);
+                      launchUrl(Uri.parse(state.url));
+                    },
+                    child: Container(
+                      height: .05.sh,
+                      width: .35.sw,
+                      decoration: BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(12.sp), boxShadow: [
+                        BoxShadow(color: Colors.black54, offset: Offset(0, 0), blurRadius: 2),
+                      ]),
+                      child: Center(
+                          child: Text(
+                        "Free Demo 🆓",
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  );
+                } else {
+                  return InkWell(
+                    onTap: () async {
+                      String url = "https://www.vidyabox.in";
+                      launchUrl(Uri.parse(url));
+                    },
+                    child: Container(
+                      height: .05.sh,
+                      width: .35.sw,
+                      decoration: BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(12.sp), boxShadow: [
+                        BoxShadow(color: Colors.black54, offset: Offset(0, 0), blurRadius: 2),
+                      ]),
+                      child: Center(
+                          child: Text(
+                        "Free Demo 🆓",
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  );
+                }
               },
-              child: Container(
-                height: .05.sh,
-                width: .35.sw,
-                decoration: BoxDecoration(color: Theme.of(context).cardColor, borderRadius: BorderRadius.circular(12.sp), boxShadow: [
-                  BoxShadow(color: Colors.black54, offset: Offset(0, 0), blurRadius: 2),
-                ]),
-                child: Center(
-                    child: Text(
-                  "Free Demo 🆓",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                )),
-              ),
             ),
           ],
         ),

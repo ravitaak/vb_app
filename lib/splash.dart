@@ -16,6 +16,8 @@ import 'package:vb_app/routes/index.gr.dart';
 import 'package:vb_app/utils/ScreenUtil.dart';
 import 'package:vb_app/utils/SecureStorage.dart';
 
+import 'bloc/vb/vidya_box_cubit.dart';
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -33,13 +35,14 @@ class _SplashScreenState extends State<SplashScreen> {
         log("User data is null");
       }
       if (userData != null) {
-        context.read<UserCubit>().setUserData(userData);
+        context.read<SubscriptionCubit>().setUserData(userData);
         late List<Future> _futures;
         try {
           _futures = [
             context.read<SubscriptionCubit>().getSubscriptionDetails(),
+            context.read<VidyaBoxCubit>().getUrl(),
             context.read<SubscriptionCubit>().getSubscriptionsList(userData.createdAt.toString().split(" ").first),
-            Future.delayed(const Duration(milliseconds: 1000))
+            Future.delayed(const Duration(milliseconds: 1000)),
           ];
         } catch (fe) {}
 
@@ -86,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen> {
               if (u == null && accessToken != null) {
                 context.router.pushAndPopUntil(SignUpScreenRoute(), predicate: (Route<dynamic> route) => false);
               } else {
-                context.router.pushAndPopUntil(HomeWrapperRoute(), predicate: (Route<dynamic> route) => false);
+                // context.router.pushAndPopUntil(HomeWrapperRoute(), predicate: (Route<dynamic> route) => false);
               }
             } else {
               context.router.pushAndPopUntil(LanguageScreenRoute(hasUserData: u != null, hasToken: accessToken != null),
