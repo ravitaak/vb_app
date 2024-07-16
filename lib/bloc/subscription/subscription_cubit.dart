@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:vb_app/bloc/user/user_cubit.dart';
@@ -13,8 +12,6 @@ import 'package:vb_app/data/services/models/reference_code.dart';
 import 'package:vb_app/data/services/models/user_subscription.dart';
 import 'package:vb_app/data/services/repository/MiscRepository.dart';
 import 'package:vb_app/utils/SecureStorage.dart';
-
-import '../../data/database/db.dart';
 
 part 'subscription_state.dart';
 
@@ -58,11 +55,6 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
     }
   }
 
-  setUserData(TbUserData userData) {
-    userCubit.setUserData(userData);
-    FirebaseAnalytics.instance.setUserId(id: userData.id.toString());
-  }
-
   Future getSubscriptionDetails() async {
     try {
       log("getSubscriptionDetails called");
@@ -70,6 +62,7 @@ class SubscriptionCubit extends Cubit<SubscriptionState> {
       emit(state.copyWith(userSubscriptionStatus: UserSubscriptionStatus.loading));
       UserLoaded _userLoaded = userCubit.state as UserLoaded;
       log("user id ${_userLoaded.userData!.id}");
+
       UserSubscription? _sub = await _miscRepository.getSubscription(_userLoaded.userData!.id);
       if (_sub == null) {
         emit(

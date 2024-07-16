@@ -23,7 +23,6 @@ initializeApp() async {
   await Firebase.initializeApp();
   final facebookAppEvents = FacebookAppEvents();
   facebookAppEvents.setAutoLogAppEventsEnabled(true);
-
   await setupServiceLocator();
 
   return App();

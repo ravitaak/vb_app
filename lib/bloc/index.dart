@@ -16,16 +16,16 @@ List<BlocProvider> providers = [
   BlocProvider<UserCubit>(
     create: (context) => UserCubit(),
   ),
-  BlocProvider<PrivateCubit>(
-    create: (context) => PrivateCubit(context.read<UserCubit>()),
-  ),
-  BlocProvider<SubscriptionCubit>(
-    create: (context) => SubscriptionCubit(context.read<UserCubit>()),
-  ),
   BlocProvider<VidyaBoxCubit>(
     create: (context) => VidyaBoxCubit(),
   ),
   BlocProvider<UserCubit>(
     create: (context) => UserCubit(),
+  ),
+  BlocProvider<PrivateCubit>(
+    create: (context) => PrivateCubit(context.read<UserCubit>()),
+  ),
+  BlocProvider<SubscriptionCubit>(
+    create: (context) => SubscriptionCubit(context.read<UserCubit>()),
   ),
 ];

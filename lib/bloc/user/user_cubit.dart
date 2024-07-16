@@ -12,7 +12,7 @@ class UserCubit extends Cubit<UserState> {
   MiscRepository _miscRepository = GetIt.I<MiscRepository>();
 
   setUserData(TbUserData userData) {
-    emit(UserLoaded(userData: userData));
+    emit(new UserLoaded(userData: userData));
   }
 
   Future updateUser(data) async {
