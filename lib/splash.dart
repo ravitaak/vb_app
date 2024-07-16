@@ -89,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen> {
               if (u == null && accessToken != null) {
                 context.router.pushAndPopUntil(SignUpScreenRoute(), predicate: (Route<dynamic> route) => false);
               } else {
-                // context.router.pushAndPopUntil(HomeWrapperRoute(), predicate: (Route<dynamic> route) => false);
+                context.router.pushAndPopUntil(HomeWrapperRoute(), predicate: (Route<dynamic> route) => false);
               }
             } else {
               context.router.pushAndPopUntil(LanguageScreenRoute(hasUserData: u != null, hasToken: accessToken != null),
