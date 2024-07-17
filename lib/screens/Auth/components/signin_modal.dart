@@ -302,9 +302,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                             ],
                                           ),
                                           style: ButtonStyle(
-                                            backgroundColor: MaterialStateProperty.all(const Color(0xff2ed573)),
-                                            padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
-                                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                            backgroundColor: WidgetStateProperty.all(const Color(0xff2ed573)),
+                                            padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
+                                            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                               RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(12.0),
                                               ),
@@ -326,7 +326,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                         side: BorderSide(width: 2, color: Theme.of(context).hintColor),
                                         value: _isChecked,
                                         activeColor: Theme.of(context).primaryColor,
-                                        overlayColor: MaterialStateProperty.all(Colors.green.shade500),
+                                        overlayColor: WidgetStateProperty.all(Colors.green.shade500),
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(4),
                                         ),
@@ -440,9 +440,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                           ],
                                         ),
                                         style: ButtonStyle(
-                                          backgroundColor: MaterialStateProperty.all(const Color(0xff2ed573).withOpacity(0.2)),
-                                          padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12, horizontal: 12)),
-                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                          backgroundColor: WidgetStateProperty.all(const Color(0xff2ed573).withOpacity(0.2)),
+                                          padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12, horizontal: 12)),
+                                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(8.0),
                                             ),
@@ -507,9 +507,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                       ],
                                     ),
                                     style: ButtonStyle(
-                                      backgroundColor: MaterialStateProperty.all(const Color(0xff2ed573)),
-                                      padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
-                                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                      backgroundColor: WidgetStateProperty.all(const Color(0xff2ed573)),
+                                      padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
+                                      shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                         RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(12.0),
                                         ),

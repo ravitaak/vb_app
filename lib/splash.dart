@@ -3,11 +3,11 @@ import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flare_splash_screen/flare_splash_screen.dart' as FlareSplashScreen;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:vb_app/app.dart';
 import 'package:vb_app/bloc/subscription/subscription_cubit.dart';
 import 'package:vb_app/bloc/user/user_cubit.dart';
@@ -80,20 +80,13 @@ class _SplashScreenState extends State<SplashScreen> {
       } else {
         setUser().then((u) async {
           try {
-            final isLanguageSelected = await SecureStorage.getValue(key: "LANG_SELECTED");
             final accessToken = await SecureStorage.getValue(key: "accessToken");
 
-            if (isLanguageSelected != null) {
-              App.setLocale(context, Locale(isLanguageSelected));
-
-              if (u == null && accessToken != null) {
-                context.router.pushAndPopUntil(SignUpScreenRoute(), predicate: (Route<dynamic> route) => false);
-              } else {
-                context.router.pushAndPopUntil(HomeWrapperRoute(), predicate: (Route<dynamic> route) => false);
-              }
+            App.setLocale(context, Locale('en'));
+            if (u == null && accessToken != null) {
+              context.router.pushAndPopUntil(SignUpScreenRoute(), predicate: (Route<dynamic> route) => false);
             } else {
-              context.router.pushAndPopUntil(LanguageScreenRoute(hasUserData: u != null, hasToken: accessToken != null),
-                  predicate: (Route<dynamic> route) => false);
+              context.router.pushAndPopUntil(HomeWrapperRoute(), predicate: (Route<dynamic> route) => false);
             }
           } catch (e, s) {
             log(e.toString(), stackTrace: s);
@@ -107,15 +100,31 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     Sizing.init(context);
     return Scaffold(
-      body: Container(
-        height: 1.sh,
-        child: FlareSplashScreen.SplashScreen.callback(
-          backgroundColor: Colors.white,
-          name: 'assets/animations/splash_screen.flr',
-          until: () => Future.delayed(Duration(seconds: 1, milliseconds: 800)),
-          startAnimation: 'SplashScreen',
-          onError: (error, stacktrace) {},
-          onSuccess: (data) {},
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                'assets/images/vb_logo.png',
+                fit: BoxFit.fill,
+                width: 150.w,
+                height: 150.w,
+              ),
+            ),
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              "VidyaBox",
+              style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
+            ),
+            LoadingAnimationWidget.prograssiveDots(
+              color: Color(Theme.of(context).primaryColor.value),
+              size: 50.h,
+            ),
+          ],
         ),
       ),
     );

@@ -479,6 +479,7 @@ class _SignUpScreenState extends State<SignUpScreen> with CodeAutoFill {
                                                         color: Colors.white,
                                                         fontSize: 14,
                                                         fontFamily: 'Montserrat-Medium',
+                                                        fontWeight: FontWeight.w700,
                                                       ),
                                                     ),
                                                     SizedBox(
@@ -493,9 +494,9 @@ class _SignUpScreenState extends State<SignUpScreen> with CodeAutoFill {
                                         ],
                                       ),
                                       style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(const Color(0xff2ed573)),
-                                        padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        backgroundColor: WidgetStateProperty.all(const Color(0xff2ed573)),
+                                        padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
+                                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                           RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(12.0),
                                           ),
@@ -586,7 +587,7 @@ class _SignUpScreenState extends State<SignUpScreen> with CodeAutoFill {
                               children: [
                                 Expanded(
                                   child: Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                                    padding: EdgeInsets.symmetric(horizontal: 100.w),
                                     child: TextButton(
                                       onPressed: () async {
                                         setState(() {
@@ -620,9 +621,9 @@ class _SignUpScreenState extends State<SignUpScreen> with CodeAutoFill {
                                         ),
                                       ),
                                       style: ButtonStyle(
-                                        backgroundColor: MaterialStateProperty.all(const Color(0xff2ed573)),
-                                        padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 15)),
-                                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                        backgroundColor: WidgetStateProperty.all(const Color(0xff2ed573).withOpacity(0.75)),
+                                        padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 13)),
+                                        shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                           RoundedRectangleBorder(
                                             borderRadius: BorderRadius.circular(12.0),
                                           ),
@@ -751,9 +752,9 @@ class _SignUpScreenState extends State<SignUpScreen> with CodeAutoFill {
                                                           ],
                                                         ),
                                                         style: ButtonStyle(
-                                                          backgroundColor: MaterialStateProperty.all(const Color(0xff2ed573).withOpacity(0.3)),
-                                                          padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12, horizontal: 12)),
-                                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                                          backgroundColor: WidgetStateProperty.all(const Color(0xff2ed573).withOpacity(0.3)),
+                                                          padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12, horizontal: 12)),
+                                                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                                             RoundedRectangleBorder(
                                                               borderRadius: BorderRadius.circular(8.0),
                                                             ),
@@ -860,9 +861,9 @@ class _SignUpScreenState extends State<SignUpScreen> with CodeAutoFill {
                                           ],
                                         ),
                                         style: ButtonStyle(
-                                          backgroundColor: MaterialStateProperty.all(const Color(0xff2ed573)),
-                                          padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
-                                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                          backgroundColor: WidgetStateProperty.all(const Color(0xff2ed573)),
+                                          padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
+                                          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(12.0),
                                             ),

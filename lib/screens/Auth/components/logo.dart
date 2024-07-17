@@ -11,26 +11,42 @@ class Logo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 65.h, bottom: 18),
-              child: Image.asset(
-                'assets/images/white_logo.png',
-                width: .36.sw,
+              padding: EdgeInsets.only(top: 60.h, bottom: 18),
+              child: Text(
+                "#PhoneFreeLearning",
+                style: TextStyle(
+                  color: Color(0xff031c4e),
+                  fontSize: 24.sp,
+                  fontFamily: 'Montserrat-Bold',
+                ),
               ),
             )
           ],
         ),
-        Text(
-          "SunoKitaab",
-          style: TextStyle(
-            color: Color(0xff031c4e),
-            fontSize: 24.sp,
-            fontFamily: 'Montserrat-Bold',
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 0.h, bottom: 14),
+              child: Image.asset(
+                'assets/images/vb_transparent.png',
+                width: .46.sw,
+              ),
+            )
+          ],
         ),
+        // Text(
+        //   "VidyaBox",
+        //   style: TextStyle(
+        //     color: Color(0xff031c4e),
+        //     fontSize: 24.sp,
+        //     fontFamily: 'Montserrat-Bold',
+        //   ),
+        // ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 32),
           child: Text(
-            AppLocalizations.of(context).GetyourEducationalBoard,
+            "Discover the freedom to learn anytime, anywhere with our device.",
             textAlign: TextAlign.center,
             style: TextStyle(
               color: const Color(0xff406882),
@@ -40,7 +56,7 @@ class Logo extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: .06.sh,
+          height: .03.sh,
         ),
       ],
     );
