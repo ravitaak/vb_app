@@ -54,9 +54,6 @@ class _HomeWrapperState extends State<HomeWrapper> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('Home'),
-      // ),
       body: SafeArea(
         child: SingleChildScrollView(
           controller: _scrollController,
@@ -83,12 +80,8 @@ class _HomeWrapperState extends State<HomeWrapper> {
                           ? Container(
                               height: 200,
                               child: PageView(
-                                  //boucingscrollphysics() membuat efek mantul saat discroll ke samping
-
                                   physics: BouncingScrollPhysics(),
                                   controller: _pageControllerU,
-
-                                  //make pageview scrollable sideways
                                   scrollDirection: Axis.horizontal,
                                   children: upperSlides
                                       .map(
@@ -326,6 +319,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
                 if (state.urlLoading == UrlLoading.fetched) {
                   return InkWell(
                     onTap: () async {
+                      print(state.url);
                       launchUrl(Uri.parse(state.url));
                     },
                     child: Container(

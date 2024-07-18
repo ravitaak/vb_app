@@ -184,6 +184,7 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
       "zip_code": zipCode,
       "payment_id": widget.paymentId,
       "message": widget.message,
+      "status": "pending",
     };
 
     var res = await context.read<VidyaBoxCubit>().orderShippingAddress(data);
