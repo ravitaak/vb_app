@@ -319,25 +319,20 @@ class Razorpay extends PaymentGateway {
   Razorpay({bool upi = false}) {
     _upi = upi;
     _razorpay.on(RZP.Razorpay.EVENT_PAYMENT_SUCCESS, (data) async {
-      log(data.toString());
       List<dynamic> responses =
           await Future.wait([Future.delayed(const Duration(seconds: 2)), context.read<GlobalCubit>().showFailurePossibilityDialog()]);
-      switch (purchaseType) {
-        case PurchaseType.Chapter:
-          // await context.read<SubscriptionCubit>().getChapter(paymentBody.chapterId!, user.id);
-          break;
-        case PurchaseType.Subscription:
-          await context.read<SubscriptionCubit>().getSubscriptionDetails();
-          break;
-        case PurchaseType.VidyaBox:
-          await context.read<SubscriptionCubit>().getSubscriptionDetails();
-          break;
-      }
+      await context.read<SubscriptionCubit>().getSubscriptionDetails();
       _loadingOverlay.hide();
+      String paymentId = "Not Available!";
+
+      try {
+        paymentId = data['data']['razorpay_payment_id'];
+      } catch (e) {
+        print(e);
+      }
 
       // go to thank you page...
-      // AutoRouter.of(context).push(ThankYouPageRoute());
-      AutoRouter.of(context).push(OrderShippingScreenRoute(userId: user.id, message: 'Order Placed', paymentId: data.razorpay_payment_id));
+      AutoRouter.of(context).push(OrderShippingScreenRoute(userId: user.id, message: 'Order Placed!', paymentId: paymentId));
 
       //if show failure possibility is high then show the dialog...
       if (responses.last) {
@@ -433,9 +428,9 @@ class Razorpay extends PaymentGateway {
                                   ],
                                 ),
                                 style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(const Color(0xff2ed573)),
-                                  padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  backgroundColor: WidgetStateProperty.all(const Color(0xff2ed573)),
+                                  padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
+                                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),
@@ -473,9 +468,9 @@ class Razorpay extends PaymentGateway {
                                   ],
                                 ),
                                 style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(const Color(0xff2ed573)),
-                                  padding: MaterialStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
-                                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  backgroundColor: WidgetStateProperty.all(const Color(0xff2ed573)),
+                                  padding: WidgetStateProperty.all(EdgeInsets.symmetric(vertical: 12)),
+                                  shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12.0),
                                     ),

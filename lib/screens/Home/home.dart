@@ -326,7 +326,6 @@ class _HomeWrapperState extends State<HomeWrapper> {
                 if (state.urlLoading == UrlLoading.fetched) {
                   return InkWell(
                     onTap: () async {
-                      print(state.url);
                       launchUrl(Uri.parse(state.url));
                     },
                     child: Container(

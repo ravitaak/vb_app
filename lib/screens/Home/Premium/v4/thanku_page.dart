@@ -85,7 +85,7 @@ class _ThankYouPageState extends State<ThankYouPage> {
                     ),
                     SizedBox(height: screenHeight * 0.05),
                     Text(
-                      "Your subscription will be activated automatically. If not activated please wait for 15 minutes and restart the app.",
+                      "We appreciate your order and your trust in Sunokitaab. Your new Vidyabox device will be with you soon",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black87,

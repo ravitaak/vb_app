@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vb_app/bloc/vb/vidya_box_cubit.dart';
+import 'package:vb_app/routes/index.gr.dart';
 
-import '../../routes/index.gr.dart';
+import 'Common/loading_overlay.dart';
 
 class OrderShippingScreen extends StatefulWidget {
   final String message;
@@ -53,6 +56,7 @@ class ShippingAddressForm extends StatefulWidget {
 
 class _ShippingAddressFormState extends State<ShippingAddressForm> {
   final _formKey = GlobalKey<FormState>();
+  late LoadingOverlay _loadingOverlay;
 
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _streetAddressController = TextEditingController();
@@ -61,6 +65,12 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
   TextEditingController _zipCodeController = TextEditingController();
   TextEditingController _referralCodeController = TextEditingController();
   TextEditingController _schoolNameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadingOverlay = LoadingOverlay(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +152,6 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
                   if (_formKey.currentState!.validate()) {
                     _submitForm();
                     // go to thank you page...
-                    AutoRouter.of(context).push(ThankYouPageRoute());
                   }
                 },
                 child: Text('Submit'),
@@ -155,6 +164,7 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
   }
 
   _submitForm() async {
+    _loadingOverlay.show();
     String username = _usernameController.text;
     String streetAddress = _streetAddressController.text;
     String city = _cityController.text;
@@ -178,7 +188,10 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
 
     var res = await context.read<VidyaBoxCubit>().orderShippingAddress(data);
 
-    print(res);
+    _loadingOverlay.hide();
+
+    AutoRouter.of(context).push(ThankYouPageRoute());
+    log(res);
 
     _usernameController.clear();
     _streetAddressController.clear();
