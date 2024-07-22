@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +56,7 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
   final _formKey = GlobalKey<FormState>();
   late LoadingOverlay _loadingOverlay;
 
-  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _fullnameController = TextEditingController();
   TextEditingController _streetAddressController = TextEditingController();
   TextEditingController _cityController = TextEditingController();
   TextEditingController _stateController = TextEditingController();
@@ -83,11 +81,11 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               TextFormField(
-                controller: _usernameController,
-                decoration: InputDecoration(labelText: 'User Name'),
+                controller: _fullnameController,
+                decoration: InputDecoration(labelText: 'Full Name'),
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter your name';
+                    return 'Please enter your full name';
                   }
                   return null;
                 },
@@ -151,7 +149,6 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _submitForm();
-                    // go to thank you page...
                   }
                 },
                 child: Text('Submit'),
@@ -165,7 +162,7 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
 
   _submitForm() async {
     _loadingOverlay.show();
-    String username = _usernameController.text;
+    String fullname = _fullnameController.text;
     String streetAddress = _streetAddressController.text;
     String city = _cityController.text;
     String state = _stateController.text;
@@ -175,7 +172,7 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
 
     var data = {
       "userId": widget.userId,
-      "fullname": username,
+      "fullname": fullname,
       "street_address": streetAddress,
       "city": city,
       "state": state,
@@ -187,14 +184,12 @@ class _ShippingAddressFormState extends State<ShippingAddressForm> {
       "status": "pending",
     };
 
-    var res = await context.read<VidyaBoxCubit>().orderShippingAddress(data);
+    await context.read<VidyaBoxCubit>().orderShippingAddress(data);
 
     _loadingOverlay.hide();
 
     AutoRouter.of(context).push(ThankYouPageRoute());
-    log(res);
-
-    _usernameController.clear();
+    _fullnameController.clear();
     _streetAddressController.clear();
     _cityController.clear();
     _stateController.clear();

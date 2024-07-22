@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vb_app/bloc/vb/vidya_box_cubit.dart';
 import 'package:vb_app/screens/Home/Premium/v4/index.dart';
@@ -36,6 +37,8 @@ class _HomeWrapperState extends State<HomeWrapper> {
   @override
   void initState() {
     super.initState();
+    initializeDateFormatting();
+
     context.read<VidyaBoxCubit>().fetchVidyaBoxSlides();
     _pageControllerL.addListener(() {
       setState(() {

@@ -25,9 +25,6 @@ Future setupServiceLocator() async {
   pdfOpeningStream = pdfOpeningStreamController.stream;
 
   String? accessToken = await SecureStorage.getValue(key: "accessToken");
-
-  if (Platform.isIOS) {}
-
   Directory _dir = await getApplicationDocumentsDirectory();
   Constants.dataDirectory = "${_dir.path}";
 
